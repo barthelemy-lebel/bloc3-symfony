@@ -9,7 +9,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AdminRepository::class)]
-#[ORM\Table(name: '`admin`')]
 #[ApiResource]
 class Admin
 {
@@ -19,59 +18,35 @@ class Admin
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $nom = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $prenom = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
     private ?string $password = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $name = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $firstname = null;
+
     #[ORM\Column(length: 10)]
     private ?string $tel = null;
 
-    #[ORM\OneToMany(targetEntity: Client::class, mappedBy: '_admin')]
+    #[ORM\OneToMany(targetEntity: Client::class, mappedBy: 'admin')]
     private Collection $clients;
 
-    #[ORM\ManyToMany(targetEntity: Annonce::class, mappedBy: '_admin')]
-    private Collection $annonces;
+    #[ORM\OneToMany(targetEntity: Submission::class, mappedBy: 'admin')]
+    private Collection $submissions;
 
     public function __construct()
     {
         $this->clients = new ArrayCollection();
-        $this->annonces = new ArrayCollection();
+        $this->submissions = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
-
-    public function setNom(string $nom): static
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getPrenom(): ?string
-    {
-        return $this->prenom;
-    }
-
-    public function setPrenom(string $prenom): static
-    {
-        $this->prenom = $prenom;
-
-        return $this;
     }
 
     public function getEmail(): ?string
@@ -94,6 +69,30 @@ class Admin
     public function setPassword(string $password): static
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(string $firstname): static
+    {
+        $this->firstname = $firstname;
 
         return $this;
     }
@@ -141,27 +140,30 @@ class Admin
     }
 
     /**
-     * @return Collection<int, Annonce>
+     * @return Collection<int, Submission>
      */
-    public function getAnnonces(): Collection
+    public function getSubmissions(): Collection
     {
-        return $this->annonces;
+        return $this->submissions;
     }
 
-    public function addAnnonce(Annonce $annonce): static
+    public function addSubmission(Submission $submission): static
     {
-        if (!$this->annonces->contains($annonce)) {
-            $this->annonces->add($annonce);
-            $annonce->addAdmin($this);
+        if (!$this->submissions->contains($submission)) {
+            $this->submissions->add($submission);
+            $submission->setAdmin($this);
         }
 
         return $this;
     }
 
-    public function removeAnnonce(Annonce $annonce): static
+    public function removeSubmission(Submission $submission): static
     {
-        if ($this->annonces->removeElement($annonce)) {
-            $annonce->removeAdmin($this);
+        if ($this->submissions->removeElement($submission)) {
+            // set the owning side to null (unless already changed)
+            if ($submission->getAdmin() === $this) {
+                $submission->setAdmin(null);
+            }
         }
 
         return $this;

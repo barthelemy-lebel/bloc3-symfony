@@ -31,13 +31,11 @@ class AdminController extends AbstractController
 
         $responseData = [
             'id' => $admin->getId(),
-            'nom' => $admin->getNom(),
-            'prenom' => $admin->getPrenom(),
+            'nom' => $admin->getName(),
+            'prenom' => $admin->getFirstname(),
             'email' => $admin->getEmail(),
             'password' => $admin->getPassword(),
             'tel' => $admin->getTel(),
-            'clients' => $admin->getClients(),
-            'annonces' => $admin->getAnnonces(),
         ];
 
         return new JsonResponse($responseData);

@@ -10,13 +10,13 @@ return [PHP_INT_MAX, static fn () => \Symfony\Component\VarExporter\Internal\Hyd
             'properties' => [
                 [
                     'id',
-                    'nom',
-                    'prenom',
                     'email',
                     'password',
+                    'name',
+                    'firstname',
                     'tel',
                     'clients',
-                    'annonces',
+                    'submissions',
                 ],
             ],
         ],

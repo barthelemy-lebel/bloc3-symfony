@@ -16,21 +16,21 @@ class Admin extends \App\Entity\Admin implements \Doctrine\ORM\Proxy\InternalPro
     }
 
     private const LAZY_OBJECT_PROPERTY_SCOPES = [
-        "\0".parent::class."\0".'annonces' => [parent::class, 'annonces', null],
         "\0".parent::class."\0".'clients' => [parent::class, 'clients', null],
         "\0".parent::class."\0".'email' => [parent::class, 'email', null],
+        "\0".parent::class."\0".'firstname' => [parent::class, 'firstname', null],
         "\0".parent::class."\0".'id' => [parent::class, 'id', null],
-        "\0".parent::class."\0".'nom' => [parent::class, 'nom', null],
+        "\0".parent::class."\0".'name' => [parent::class, 'name', null],
         "\0".parent::class."\0".'password' => [parent::class, 'password', null],
-        "\0".parent::class."\0".'prenom' => [parent::class, 'prenom', null],
+        "\0".parent::class."\0".'submissions' => [parent::class, 'submissions', null],
         "\0".parent::class."\0".'tel' => [parent::class, 'tel', null],
-        'annonces' => [parent::class, 'annonces', null],
         'clients' => [parent::class, 'clients', null],
         'email' => [parent::class, 'email', null],
+        'firstname' => [parent::class, 'firstname', null],
         'id' => [parent::class, 'id', null],
-        'nom' => [parent::class, 'nom', null],
+        'name' => [parent::class, 'name', null],
         'password' => [parent::class, 'password', null],
-        'prenom' => [parent::class, 'prenom', null],
+        'submissions' => [parent::class, 'submissions', null],
         'tel' => [parent::class, 'tel', null],
     ];
 

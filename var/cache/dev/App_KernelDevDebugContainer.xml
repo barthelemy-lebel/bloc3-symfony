@@ -392,7 +392,6 @@
     </parameter>
     <parameter key="api_platform.rfc_7807_compliant_errors">true</parameter>
     <parameter key="api_platform.resource_class_directories" type="collection">
-      <parameter>/home/barthelemy/projet-collab/bloc3-symfony/config/api_platform</parameter>
       <parameter>/home/barthelemy/projet-collab/bloc3-symfony/src/ApiResource</parameter>
       <parameter>/home/barthelemy/projet-collab/bloc3-symfony/src/Entity</parameter>
     </parameter>
@@ -562,15 +561,15 @@
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
-    <service id="App\Repository\AnnonceRepository" class="App\Repository\AnnonceRepository" autowire="true" autoconfigure="true">
-      <tag name="doctrine.repository_service"/>
-      <argument type="service" id="doctrine"/>
-    </service>
     <service id="App\Repository\ClientRepository" class="App\Repository\ClientRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
-    <service id="App\Repository\DocumentsRepository" class="App\Repository\DocumentsRepository" autowire="true" autoconfigure="true">
+    <service id="App\Repository\DocumentRepository" class="App\Repository\DocumentRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\SubmissionRepository" class="App\Repository\SubmissionRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
@@ -5468,7 +5467,7 @@
     <service id="doctrine.orm.configuration" class="Doctrine\ORM\Configuration" abstract="true"/>
     <service id="doctrine.orm.entity_manager.abstract" class="Doctrine\ORM\EntityManager" lazy="true" abstract="true"/>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.OSlo8Bl"/>
+      <argument type="service" id=".service_locator.a8MebCl"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -8419,12 +8418,12 @@
     <service id=".abstract.instanceof.App\Controller\ClientController" class="App\Controller\ClientController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\AdminRepository" class="App\Repository\AdminRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\AdminRepository" class="App\Repository\AdminRepository" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\AnnonceRepository" class="App\Repository\AnnonceRepository" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Repository\AnnonceRepository" class="App\Repository\AnnonceRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ClientRepository" class="App\Repository\ClientRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\ClientRepository" class="App\Repository\ClientRepository" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\DocumentsRepository" class="App\Repository\DocumentsRepository" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Repository\DocumentsRepository" class="App\Repository\DocumentsRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\DocumentRepository" class="App\Repository\DocumentRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\DocumentRepository" class="App\Repository\DocumentRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\SubmissionRepository" class="App\Repository\SubmissionRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\SubmissionRepository" class="App\Repository\SubmissionRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".service_locator.w7.f4fT" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -9214,13 +9213,13 @@
         <argument key="turbo.doctrine.event_listener" type="service_closure" id="turbo.doctrine.event_listener"/>
       </argument>
     </service>
-    <service id=".service_locator.OSlo8Bl" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.a8MebCl" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Repository\AdminRepository" type="service_closure" id="App\Repository\AdminRepository"/>
-        <argument key="App\Repository\AnnonceRepository" type="service_closure" id="App\Repository\AnnonceRepository"/>
         <argument key="App\Repository\ClientRepository" type="service_closure" id="App\Repository\ClientRepository"/>
-        <argument key="App\Repository\DocumentsRepository" type="service_closure" id="App\Repository\DocumentsRepository"/>
+        <argument key="App\Repository\DocumentRepository" type="service_closure" id="App\Repository\DocumentRepository"/>
+        <argument key="App\Repository\SubmissionRepository" type="service_closure" id="App\Repository\SubmissionRepository"/>
       </argument>
     </service>
     <service id=".service_locator.KLVvNIq" class="Symfony\Component\DependencyInjection\ServiceLocator">

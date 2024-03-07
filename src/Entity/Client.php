@@ -18,59 +18,39 @@ class Client
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $nom = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $prenom = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
     private ?string $password = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $name = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $firstname = null;
 
     #[ORM\Column(length: 10)]
     private ?string $tel = null;
 
     #[ORM\ManyToOne(inversedBy: 'clients')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Admin $_admin = null;
+    private ?Admin $admin = null;
 
-    #[ORM\OneToMany(targetEntity: Documents::class, mappedBy: 'client')]
+    #[ORM\OneToMany(targetEntity: Document::class, mappedBy: 'client')]
     private Collection $documents;
+
+    #[ORM\ManyToMany(targetEntity: Submission::class, mappedBy: 'client')]
+    private Collection $submissions;
 
     public function __construct()
     {
         $this->documents = new ArrayCollection();
+        $this->submissions = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
-
-    public function setNom(string $nom): static
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getPrenom(): ?string
-    {
-        return $this->prenom;
-    }
-
-    public function setPrenom(string $prenom): static
-    {
-        $this->prenom = $prenom;
-
-        return $this;
     }
 
     public function getEmail(): ?string
@@ -97,6 +77,30 @@ class Client
         return $this;
     }
 
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(string $firstname): static
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
     public function getTel(): ?string
     {
         return $this->tel;
@@ -111,25 +115,25 @@ class Client
 
     public function getAdmin(): ?Admin
     {
-        return $this->_admin;
+        return $this->admin;
     }
 
-    public function setAdmin(?Admin $_admin): static
+    public function setAdmin(?Admin $admin): static
     {
-        $this->_admin = $_admin;
+        $this->admin = $admin;
 
         return $this;
     }
 
     /**
-     * @return Collection<int, Documents>
+     * @return Collection<int, Document>
      */
     public function getDocuments(): Collection
     {
         return $this->documents;
     }
 
-    public function addDocument(Documents $document): static
+    public function addDocument(Document $document): static
     {
         if (!$this->documents->contains($document)) {
             $this->documents->add($document);
@@ -139,13 +143,40 @@ class Client
         return $this;
     }
 
-    public function removeDocument(Documents $document): static
+    public function removeDocument(Document $document): static
     {
         if ($this->documents->removeElement($document)) {
             // set the owning side to null (unless already changed)
             if ($document->getClient() === $this) {
                 $document->setClient(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Submission>
+     */
+    public function getSubmissions(): Collection
+    {
+        return $this->submissions;
+    }
+
+    public function addSubmission(Submission $submission): static
+    {
+        if (!$this->submissions->contains($submission)) {
+            $this->submissions->add($submission);
+            $submission->addClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSubmission(Submission $submission): static
+    {
+        if ($this->submissions->removeElement($submission)) {
+            $submission->removeClient($this);
         }
 
         return $this;

@@ -106,7 +106,7 @@ return [PHP_INT_MAX, static fn () => \Symfony\Component\VarExporter\Internal\Hyd
             'class' => [
                 1 => 'Doctrine\\Common\\Collections\\Collection',
                 null,
-                'App\\Entity\\Documents',
+                'App\\Entity\\Document',
             ],
             'collection' => [
                 1 => true,

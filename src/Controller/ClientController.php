@@ -31,8 +31,8 @@ class ClientController extends AbstractController
 
         $responseData = [
             'id' => $client->getId(),
-            'nom' => $client->getNom(),
-            'prenom' => $client->getPrenom(),
+            'nom' => $client->getName(),
+            'prenom' => $client->getFirstname(),
             'email' => $client->getEmail(),
             'password' => $client->getPassword(),
             'tel' => $client->getTel(),

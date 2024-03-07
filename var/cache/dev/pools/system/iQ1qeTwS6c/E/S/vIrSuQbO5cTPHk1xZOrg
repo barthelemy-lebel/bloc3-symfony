@@ -69,10 +69,7 @@ return [PHP_INT_MAX, static fn () => \Symfony\Component\VarExporter\Internal\Hyd
             ],
             'schema' => [
                 [
-                    'type' => [
-                        'string',
-                        'null',
-                    ],
+                    'type' => 'string',
                     'format' => 'iri-reference',
                     'example' => 'https://example.com/',
                 ],
@@ -95,7 +92,7 @@ return [PHP_INT_MAX, static fn () => \Symfony\Component\VarExporter\Internal\Hyd
                 1 => 'object',
             ],
             'nullable' => [
-                1 => true,
+                1 => false,
             ],
             'class' => [
                 1 => 'App\\Entity\\Admin',
