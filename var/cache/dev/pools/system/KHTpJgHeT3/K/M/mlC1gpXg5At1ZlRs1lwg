@@ -1,0 +1,51 @@
+<?php //App%255CController%255CAdminController%2523getAdminByEmail
+
+return [PHP_INT_MAX, static fn () => \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Symfony\\Component\\Routing\\Attribute\\Route'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Routing\\Attribute\\Route')),
+    ],
+    null,
+    [
+        'Symfony\\Component\\Routing\\Attribute\\Route' => [
+            'path' => [
+                '/admin/{email}',
+            ],
+            'methods' => [
+                [
+                    'GET',
+                ],
+            ],
+            'schemes' => [
+                [],
+            ],
+            'name' => [
+                'get_admin_by_email',
+            ],
+            'requirements' => [
+                [],
+            ],
+            'options' => [
+                [],
+            ],
+            'defaults' => [
+                [],
+            ],
+            'host' => [
+                null,
+            ],
+            'condition' => [
+                null,
+            ],
+            'priority' => [
+                null,
+            ],
+            'env' => [
+                null,
+            ],
+        ],
+    ],
+    [
+        $o[0],
+    ],
+    []
+)];
