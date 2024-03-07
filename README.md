@@ -1,9 +1,5 @@
-# Liste es routes API :
+# Liste es routes API Perso :
 ## Admin :
-- GET /api/admins -> Récupère la collection d'admin
-- POST /api/admins -> Insère un admin
-- GET /api/admins/{id} -> Récupère un admin en fonction de son id
-- PUT /api/admins/{id} ->
-- DELETE /api/admins/{id}
-- PATCH /api/admins/{id}
-- GET /api/admin/{email}
+- `GET /api/admin/{email}` -> Récupère un admin en fonction de son email
+## Client :
+- `GET /api/client/{email}` -> Récupère un client en fonction de son email
